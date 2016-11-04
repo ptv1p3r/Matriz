@@ -6,7 +6,7 @@ package proldan.utilitarios;
  */
 public class Matriz {
 
-    static float[][] fltMatriz;
+    private float[][] fltMatriz;
 
     private int intLinhas, intColunas;
 
@@ -96,16 +96,29 @@ public class Matriz {
         Matriz mResultado = new Matriz(linhas,colunas);
 
         // linhas
-        for(int i=0; i < fltMatriz.length; i++){
+        for(int i=0; i < colunas; i++){
             mResultado.fltMatriz[i][i] = 1;
         }
-
 
         return mResultado;
     }
 
-    public static void gerarDiagonal(){
+    /**
+     * Cria uma matriz com uma diagonal com valor
+     * @param linhas
+     * @param colunas
+     * @param valor
+     * @return
+     */
+    public static Matriz gerarDiagonal(int linhas, int colunas, float valor){
+        Matriz mResultado = new Matriz(linhas,colunas);
 
+        // linhas
+        for(int i=0; i < colunas; i++){
+            mResultado.fltMatriz[i][i] = valor;
+        }
+
+        return mResultado;
     }
 
     /**
@@ -142,28 +155,42 @@ public class Matriz {
         }
     }
 
-    public void somarMatriz(){
+    public Matriz somarMatriz(Matriz matriz){
+        Matriz mResultado = new Matriz(matriz.getLinhas(),matriz.getColunas());
 
+        // linhas
+        for(int i=0; i < fltMatriz.length; i++){
+            // colunas
+            for(int k=0; k < fltMatriz[0].length; k++){
+                mResultado.fltMatriz[i][k] = fltMatriz[i][k] + matriz.fltMatriz[i][k];
+            }
+        }
+
+
+        return mResultado;
     }
 
     public void somarFator(){
 
     }
 
+    /**
+     * Multiplica duas matrizes
+     * @param m
+     * @return Matriz
+     */
     public Matriz multiplicarMatriz(Matriz m){
-        Matriz mResultado = new Matriz(getLinhas(),m.getColunas());
-        m.imprimir();
+        Matriz mResultado = new Matriz(m.getLinhas(),m.getColunas());
+
         // linhas
         for(int i=0; i < fltMatriz.length; i++){
-            for(int j=0; j < fltMatriz[0].length; j++){
-                /*for (int k = 0; k < fltMatriz[0].length; k++) {
-                    //mResultado.fltMatriz[i][j] += (fltMatriz[i][k] * matriz.fltMatriz[k][j]);
-                    System.out.print(this.fltMatriz[k][j]);
-                }*/
-                System.out.print(m);
+            for(int j=0; j < m.fltMatriz[0].length; j++){
+                for (int k = 0; k < fltMatriz[0].length; k++) {
+                    mResultado.fltMatriz[i][j] += (fltMatriz[i][k] * m.fltMatriz[k][j]);
+                    //System.out.print(this.fltMatriz[k][j]);
+                }
             }
         }
-
 
         return mResultado;
     }
