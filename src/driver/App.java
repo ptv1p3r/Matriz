@@ -8,12 +8,23 @@ import proldan.utilitarios.*;
 public class App {
 
     public static void main(String [] args){
-        //Matriz m1 = new Matriz(5,3);
-        Matriz m1 = new Matriz(5);
+        Matriz m1 = new Matriz(4,4);
+        //Matriz m2 = null;
+        Matriz m2 = new Matriz(m1);
+        Matriz m3 = null;
 
+        m1.preencherAleatorio(-10.0f,10.0f);
+        System.out.println("M1:");
         m1.imprimir();
-        m1.PreencherValor(2.5f);
-        m1.imprimir();
-        System.out.println("Matriz 1:\n" + m1);
+
+        //m2 = Matriz.gerarIdentidade(4,4);
+        System.out.println("M2 = I");
+        m2.imprimir();
+
+        m3 = m2.multiplicarMatriz(m1);
+        System.out.println("M3 = M2 * M1");
+        m3.imprimir();
+
+        //System.out.println("Matriz 1:\n" + m1);
     }
 }
