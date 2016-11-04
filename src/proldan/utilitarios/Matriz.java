@@ -155,6 +155,11 @@ public class Matriz {
         }
     }
 
+    /**
+     * Soma o conteudo de duas matrizes
+     * @param matriz
+     * @return Matriz
+     */
     public Matriz somarMatriz(Matriz matriz){
         Matriz mResultado = new Matriz(matriz.getLinhas(),matriz.getColunas());
 
@@ -170,8 +175,18 @@ public class Matriz {
         return mResultado;
     }
 
-    public void somarFator(){
-
+    /**
+     * Soma um valor a todos os elementos da matriz
+     * @param valor
+     */
+    public void somarFator(float valor){
+        // linhas
+        for(int i=0; i < fltMatriz.length; i++){
+            // colunas
+            for(int k=0; k < fltMatriz[0].length; k++){
+                fltMatriz[i][k] += valor;
+            }
+        }
     }
 
     /**
@@ -180,14 +195,13 @@ public class Matriz {
      * @return Matriz
      */
     public Matriz multiplicarMatriz(Matriz m){
-        Matriz mResultado = new Matriz(m.getLinhas(),m.getColunas());
+        Matriz mResultado = new Matriz(getLinhas(),m.getColunas());
 
         // linhas
         for(int i=0; i < fltMatriz.length; i++){
             for(int j=0; j < m.fltMatriz[0].length; j++){
-                for (int k = 0; k < fltMatriz[0].length; k++) {
+                for (int k = 0; k < m.fltMatriz.length; k++) {
                     mResultado.fltMatriz[i][j] += (fltMatriz[i][k] * m.fltMatriz[k][j]);
-                    //System.out.print(this.fltMatriz[k][j]);
                 }
             }
         }
@@ -195,8 +209,18 @@ public class Matriz {
         return mResultado;
     }
 
-    public void multiplicarFator(){
-
+    /**
+     * Multiplica um valor por todos os elementos da matriz
+     * @param valor
+     */
+    public void multiplicarFator(float valor){
+        // linhas
+        for(int i=0; i < fltMatriz.length; i++){
+            // colunas
+            for(int k=0; k < fltMatriz[0].length; k++){
+                fltMatriz[i][k] *= valor;
+            }
+        }
     }
 
     /**
