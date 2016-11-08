@@ -87,6 +87,21 @@ public class Matriz {
     }
 
     /**
+     * Construtor para matrizes
+     * @param matriz
+     */
+    public Matriz(float matriz[][]){
+        fltMatriz = new float[matriz.length][];
+        this.intLinhas = matriz.length;
+        this.intColunas = matriz[0].length;
+
+        // clone do array com dados
+        for(int i = 0; i < matriz.length; i++)
+            fltMatriz[i] = matriz[i].clone();
+
+    }
+
+    /**
      * Gera matriz identidade
      * @param linhas
      * @param colunas
@@ -167,6 +182,7 @@ public class Matriz {
         for(int i=0; i < fltMatriz.length; i++){
             // colunas
             for(int k=0; k < fltMatriz[0].length; k++){
+                // efetua a soma da matriz
                 mResultado.fltMatriz[i][k] = fltMatriz[i][k] + matriz.fltMatriz[i][k];
             }
         }
@@ -197,13 +213,16 @@ public class Matriz {
     public Matriz multiplicarMatriz(Matriz m){
         Matriz mResultado = new Matriz(getLinhas(),m.getColunas());
 
-        // linhas
-        for(int i=0; i < fltMatriz.length; i++){
-            for(int j=0; j < m.fltMatriz[0].length; j++){
-                for (int k = 0; k < m.fltMatriz.length; k++) {
-                    mResultado.fltMatriz[i][j] += (fltMatriz[i][k] * m.fltMatriz[k][j]);
+        if(fltMatriz.length == m.fltMatriz[0].length) { // valida tamanho
+            for(int i=0; i < fltMatriz.length; i++){ // linhas
+                for(int j=0; j < m.fltMatriz[0].length; j++){ // colunas matriz m
+                    for (int k = 0; k < m.fltMatriz.length; k++) { // linhas matriz m
+                        mResultado.fltMatriz[i][j] += (fltMatriz[i][k] * m.fltMatriz[k][j]); // m = m+(y*m)
+                    }
                 }
             }
+        } else {
+            System.out.println("Numero de linhas da matriz A deve ser identico ao numero de colunas da matriz B");
         }
 
         return mResultado;
@@ -236,6 +255,7 @@ public class Matriz {
             }
             System.out.println();
         }
+        System.out.println("\n");
     }
 
 }

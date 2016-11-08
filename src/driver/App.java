@@ -10,7 +10,6 @@ public class App {
     public static void main(String [] args){
         Matriz m1 = new Matriz(4,4);
         Matriz m2 = null;
-        //Matriz m2 = new Matriz(2,3);
         Matriz m3 = null;
 
         m1.preencherAleatorio(-10.0f,10.0f);
@@ -46,6 +45,9 @@ public class App {
         m3 = m1.multiplicarMatriz(m3);
         System.out.println("M3 = M1 * M3\n" + m3);
 
-        //System.out.println(m1.multiplicarMatriz(new Matriz({{1, 3}, {4, 2}}) ));
+        float data[][] = {{1, 3, 3, 2}, {4, 2, 3, 2},{5, 6, 3, 2}, {7, 7, 3, 2}};
+        System.out.println("M1 * NEW\n" + m1.multiplicarMatriz( new Matriz(data) ));
+
+        System.exit(0);
     }
 }
